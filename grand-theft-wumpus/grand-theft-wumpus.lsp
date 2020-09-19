@@ -37,6 +37,25 @@
       (traverse node))
     visited))
 
+(defun hash-edges (edge-list)
+  (let ((tab (make-hash-table)))
+    (mapc (lambda (x)
+            (let ((node (car x)))
+              (push (cdr x) (gethash node tab)))) ;; NIL は空リストなのでいきなり push できる
+          edge-list)
+    tab))
+
+(defun get-connected-hash (node edge-tab)
+  (let ((visited (make-hash-table)))
+    (labels ((traverse (node)
+               (unless (gethash node visited)
+                 (setf (gethash node visited) t)
+                 (mapc (lambda (edge)
+                         (traverse edge))
+                       (gethash node edge-tab)))))
+      (traverse node))
+    visited))
+
 (defun find-islands (nodes edge-list)
   (let ((islands nil))
     (labels ((find-island (nodes)
