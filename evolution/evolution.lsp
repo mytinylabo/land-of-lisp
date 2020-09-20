@@ -108,3 +108,15 @@
                             do (princ #\.))
                         (update-world))
                     (evolution))))))
+
+(defun genomes-stats ()
+    (flet ((add-list (a b)
+            (mapcar (lambda (x) (apply #'+ x)) (mapcar #'list a b))))
+        (reduce #'add-list (mapcar #'animal-genes *animals*))))
+
+;; add-list 自前再帰版
+(defun genomes-stats2 ()
+    (labels ((add-list (a b)
+                (when (and a b)
+                    (cons (+ (car a) (car b)) (add-list (cdr a) (cdr b))))))
+        (reduce #'add-list (mapcar #'animal-genes *animals*))))
