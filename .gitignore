@@ -1,4 +1,6 @@
+.vscode
 *.dot
 *.png
+*.svg
 *.txt
 !result.txt
