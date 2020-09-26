@@ -217,8 +217,8 @@
     (defun rate-position (tree player)
         (let ((tab (gethash player previous)))
             (unless tab
-                ;; (setf (gethash ... previous 内に player をキーにハッシュテーブルを作成
-                ;; (setf tab ... ローカル変数 tab を↑で作成したハッシュテーブルへの参照で上書き
+                ;; setf gethash ... previous 内に player をキーにハッシュテーブルを作成
+                ;; setf tab ... ローカル変数 tab を↑で作成したハッシュテーブルへの参照で上書き
                 (setf tab (setf (gethash player previous) (make-hash-table))))
             (or (gethash tree tab)
                 (setf (gethash tree tab)

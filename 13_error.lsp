@@ -9,3 +9,6 @@
 (handler-case (bad-function)
     (foo () "somebody signaled foo!")
     (bar () "somebody signaled bar!"))
+
+(unwind-protect (/ 1 0)
+    (princ "I need to say 'flubyduby' matter what"))
