@@ -152,11 +152,11 @@
                                             (caddr tree))
                                         (lazy-mapcar #'caar (caddr tree)))))))
 
-(defmacro patch-handler (fun)
-    `(lambda (&rest args)
+(defun patch-handler (fun)
+    (lambda (&rest args)
         (princ "HTTP/1.1 200 OK")
         (terpri)
         (terpri)
-        (apply #',fun args)))
+        (apply fun args)))
 
-;; (serve (patch-handler dod-request-handler))
+;; (serve (patch-handler #'dod-request-handler))
